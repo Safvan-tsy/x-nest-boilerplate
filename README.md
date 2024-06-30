@@ -19,7 +19,7 @@ cd my-nest-app
 # 3. Create Environment variables file.
 cp .env.example .env
 
-# 3. Install dependencies. (Make sure pnpm is installed: https://yarnpkg.com/lang/en/docs/install)
+# 3. Install dependencies. (Make sure pnpm is installed: https://pnpm.io/installation)
 pnpm install
 
 ```
