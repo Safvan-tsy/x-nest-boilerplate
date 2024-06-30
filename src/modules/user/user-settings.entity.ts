@@ -1,10 +1,9 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm'
 
-import { AbstractEntity } from '../../common/abstract.entity';
-import { UseDto } from '../../decorators';
-import type { UserDtoOptions } from './dtos/user.dto';
-import { UserDto } from './dtos/user.dto';
-import { UserEntity } from './user.entity';
+import { AbstractEntity } from '../../common/abstract.entity'
+import { UseDto } from '../../decorators'
+import { UserDto, type UserDtoOptions } from './dtos/user.dto'
+import { UserEntity } from './user.entity'
 
 @Entity({ name: 'user_settings' })
 @UseDto(UserDto)
@@ -13,18 +12,22 @@ export class UserSettingsEntity extends AbstractEntity<
   UserDtoOptions
 > {
   @Column({ default: false })
-  isEmailVerified?: boolean;
+  isEmailVerified?: boolean
 
   @Column({ default: false })
-  isPhoneVerified?: boolean;
+  isPhoneVerified?: boolean
 
   @Column({ type: 'uuid' })
-  userId?: string;
+  userId?: string
 
-  @OneToOne(() => UserEntity, (user) => user.settings, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  })
+  @OneToOne(
+    () => UserEntity,
+    (user) => user.settings,
+    {
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    },
+  )
   @JoinColumn({ name: 'user_id' })
-  user?: UserEntity;
+  user?: UserEntity
 }

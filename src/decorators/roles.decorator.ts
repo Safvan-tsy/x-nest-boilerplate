@@ -1,4 +1,3 @@
-import { Reflector } from '@nestjs/core';
+import { Reflector } from '@nestjs/core'
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const Roles = Reflector.createDecorator<string[]>();
+export const Roles = Reflector.createDecorator<string[]>()

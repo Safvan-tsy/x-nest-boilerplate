@@ -1,3 +1,3 @@
-import { PageOptionsDto } from '../../../common/dto/page-options.dto';
+import { PageOptionsDto } from '../../../common/dto/page-options.dto'
 
 export class PostPageOptionsDto extends PageOptionsDto {}

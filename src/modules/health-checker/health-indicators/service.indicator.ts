@@ -1,9 +1,12 @@
-import { Inject, Injectable, Optional } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import type { HealthIndicatorResult } from '@nestjs/terminus';
-import { HealthCheckError, HealthIndicator } from '@nestjs/terminus';
-import { firstValueFrom } from 'rxjs';
-import { timeout } from 'rxjs/operators';
+import { Inject, Injectable, Optional } from '@nestjs/common'
+import { ClientProxy } from '@nestjs/microservices'
+import {
+  HealthCheckError,
+  HealthIndicator,
+  type HealthIndicatorResult,
+} from '@nestjs/terminus'
+import { firstValueFrom } from 'rxjs'
+import { timeout } from 'rxjs/operators'
 
 @Injectable()
 export class ServiceHealthIndicator extends HealthIndicator {
@@ -12,7 +15,7 @@ export class ServiceHealthIndicator extends HealthIndicator {
     @Inject('NATS_SERVICE')
     private readonly clientProxy?: ClientProxy,
   ) {
-    super();
+    super()
   }
 
   async isHealthy(eventName: string): Promise<HealthIndicatorResult> {
@@ -22,7 +25,7 @@ export class ServiceHealthIndicator extends HealthIndicator {
           [eventName]: {
             status: 'down',
           },
-        };
+        }
       }
 
       const result = await firstValueFrom(
@@ -30,15 +33,15 @@ export class ServiceHealthIndicator extends HealthIndicator {
         {
           defaultValue: undefined,
         },
-      );
+      )
 
       return {
         [eventName]: result,
-      };
+      }
     } catch (error) {
       throw new HealthCheckError(`${eventName} failed`, {
         [eventName]: error,
-      });
+      })
     }
   }
 }

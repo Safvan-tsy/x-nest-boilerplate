@@ -1,22 +1,22 @@
-import { Order } from '../../constants';
+import { Order } from '../../constants'
 import {
   EnumFieldOptional,
   NumberFieldOptional,
   StringFieldOptional,
-} from '../../decorators';
+} from '../../decorators'
 
 export class PageOptionsDto {
   @EnumFieldOptional(() => Order, {
     default: Order.ASC,
   })
-  readonly order: Order = Order.ASC;
+  readonly order: Order = Order.ASC
 
   @NumberFieldOptional({
     minimum: 1,
     default: 1,
     int: true,
   })
-  readonly page: number = 1;
+  readonly page: number = 1
 
   @NumberFieldOptional({
     minimum: 1,
@@ -24,12 +24,12 @@ export class PageOptionsDto {
     default: 10,
     int: true,
   })
-  readonly take: number = 10;
+  readonly take: number = 10
 
   get skip(): number {
-    return (this.page - 1) * this.take;
+    return (this.page - 1) * this.take
   }
 
   @StringFieldOptional()
-  readonly q?: string;
+  readonly q?: string
 }

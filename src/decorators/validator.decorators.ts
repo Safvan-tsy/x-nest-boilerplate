@@ -1,10 +1,10 @@
-import type { ValidationOptions } from 'class-validator';
 import {
   IsPhoneNumber as isPhoneNumber,
   registerDecorator,
   ValidateIf,
-} from 'class-validator';
-import { isString } from 'lodash';
+  type ValidationOptions,
+} from 'class-validator'
+import { isString } from 'lodash'
 
 export function IsPassword(
   validationOptions?: ValidationOptions,
@@ -18,22 +18,22 @@ export function IsPassword(
       options: validationOptions,
       validator: {
         validate(value: string) {
-          return /^[\d!#$%&*@A-Z^a-z]*$/.test(value);
+          return /^[\d!#$%&*@A-Z^a-z]*$/.test(value)
         },
       },
-    });
-  };
+    })
+  }
 }
 
 export function IsPhoneNumber(
   validationOptions?: ValidationOptions & {
-    region?: Parameters<typeof isPhoneNumber>[0];
+    region?: Parameters<typeof isPhoneNumber>[0]
   },
 ): PropertyDecorator {
   return isPhoneNumber(validationOptions?.region, {
     message: 'error.phoneNumber',
     ...validationOptions,
-  });
+  })
 }
 
 export function IsTmpKey(
@@ -47,20 +47,20 @@ export function IsTmpKey(
       options: validationOptions,
       validator: {
         validate(value: string): boolean {
-          return isString(value) && value.startsWith('tmp/');
+          return isString(value) && /^tmp\//.test(value)
         },
         defaultMessage(): string {
-          return 'error.invalidTmpKey';
+          return 'error.invalidTmpKey'
         },
       },
-    });
-  };
+    })
+  }
 }
 
 export function IsUndefinable(options?: ValidationOptions): PropertyDecorator {
-  return ValidateIf((_obj, value) => value !== undefined, options);
+  return ValidateIf((_obj, value) => value !== undefined, options)
 }
 
 export function IsNullable(options?: ValidationOptions): PropertyDecorator {
-  return ValidateIf((_obj, value) => value !== null, options);
+  return ValidateIf((_obj, value) => value !== null, options)
 }

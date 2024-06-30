@@ -1,12 +1,17 @@
-import { InjectDataSource } from '@nestjs/typeorm';
-import type {
-  ValidationArguments,
-  ValidationOptions,
-  ValidatorConstraintInterface,
-} from 'class-validator';
-import { registerDecorator, ValidatorConstraint } from 'class-validator';
-import type { EntitySchema, FindOptionsWhere, ObjectType } from 'typeorm';
-import { DataSource } from 'typeorm';
+import { InjectDataSource } from '@nestjs/typeorm'
+import {
+  registerDecorator,
+  type ValidationArguments,
+  type ValidationOptions,
+  ValidatorConstraint,
+  type ValidatorConstraintInterface,
+} from 'class-validator'
+import {
+  DataSource,
+  type EntitySchema,
+  type FindOptionsWhere,
+  type ObjectType,
+} from 'typeorm'
 
 /**
  * @deprecated Don't use this validator until it's fixed in NestJS
@@ -19,29 +24,29 @@ export class UniqueValidator implements ValidatorConstraintInterface {
     _value: string,
     args: IUniqueValidationArguments<E>,
   ): Promise<boolean> {
-    const [entityClass, findCondition] = args.constraints;
+    const [entityClass, findCondition] = args.constraints
 
     return (
       (await this.dataSource.getRepository(entityClass).count({
         where: findCondition(args),
       })) <= 0
-    );
+    )
   }
 
   defaultMessage(args: ValidationArguments): string {
-    const [entityClass] = args.constraints;
-    const entity = entityClass.name || 'Entity';
+    const [entityClass] = args.constraints
+    const entity = entityClass.name || 'Entity'
 
-    return `${entity} with the same ${args.property} already exists`;
+    return `${entity} with the same ${args.property} already exists`
   }
 }
 
 type UniqueValidationConstraints<E> = [
   ObjectType<E> | EntitySchema<E> | string,
   (validationArguments: ValidationArguments) => FindOptionsWhere<E>,
-];
+]
 interface IUniqueValidationArguments<E> extends ValidationArguments {
-  constraints: UniqueValidationConstraints<E>;
+  constraints: UniqueValidationConstraints<E>
 }
 
 export function Unique<E>(
@@ -55,6 +60,6 @@ export function Unique<E>(
       options: validationOptions,
       constraints,
       validator: UniqueValidator,
-    });
-  };
+    })
+  }
 }

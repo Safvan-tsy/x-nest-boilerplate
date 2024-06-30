@@ -1,22 +1,18 @@
 # Architecture
 
 - [Architecture](#architecture)
-  - [`.github/workflows`](#githubworkflows)
-    - [`lint.yml`](#lintyml)
   - [`.husky`](#husky)
-  - [`.vscode`](#vscode)
   - [`docs`](#docs)
-  - [`.vuepress`](#vuepress)
   - [`src`](#src)
     - [`common`](#common)
     - [`database`](#database)
       - [`migrations`](#migrations)
       - [`factories`](#factories)
       - [`seeds`](#seeds)
+      - [`ormconfig.ts`](#ormconfigts)
     - [`decorators`](#decorators)
     - [`filters`](#filters)
     - [`guards`](#guards)
-    - [`i18n`](#i18n)
     - [`interceptors`](#interceptors)
     - [`interfaces`](#interfaces)
     - [`providers`](#providers)
@@ -28,34 +24,18 @@
   - [`tests`](#tests)
   - [`.dockerignore`](#dockerignore)
   - [`.env`](#env)
-  - [`.eslintrc.js`](#eslintrcjs)
+  - [`biome.json`](#eslintrcjs)
   - [`docker-compose.yml`](#docker-composeyml)
   - [`Dockerfile`](#dockerfile)
-  - [`ormconfig.ts`](#ormconfigts)
 
-## `.github/workflows`
-
-Here you can create and store yml files for each github action.
-
-### `lint.yml`
-
-Github action to run and show linter errors on each Pull request, by default it scans every pull request and push to main, develop or master branches.
 
 ## `.husky`
 
 Folder which stores github hooks, by default it contains pre-commit hook which prevents push without fixing linter errors.
 
-## `.vscode`
-
-Settings and extensions specific to this project, for Visual Studio Code. See [the editors doc](editors.md#visual-studio-code) for more.
-
 ## `docs`
 
 You found me! :wink:
-
-## `.vuepress`
-
-Documentation config and destination folder See [VuePress doc](https://vuepress.vuejs.org) for more
 
 ## `src`
 
@@ -81,6 +61,10 @@ Factories are used to create entities which will be used in seeds.
 
 Folder to store application seeds, it adds necessary data for the development.
 
+#### `ormconfig.ts`
+
+Typeorm configuration file which is used for migrations and seeds.
+
 ### `decorators`
 
 This folder contains all global [decorators](https://www.typescriptlang.org/docs/handbook/decorators.html).
@@ -93,9 +77,6 @@ In this folder you can find app level [filters](https://docs.nestjs.com/exceptio
 
 You can store all guards here.
 
-### `i18n`
-
-Internalization JSON files are storied here.
 
 ### `interceptors`
 
@@ -147,9 +128,9 @@ List a files which will be ignored during the docker build.
 
 Environment variables which will load before app start and will be stored in `process.env`, (*) is a env name (development, test, staging, production)
 
-## `.eslintrc.js`
+## `biome.json`
 
-Eslint configuration file, See [the eslint doc](https://eslint.org/) for more.
+Biome configuration file, See [the biome doc](https://biomejs.dev/) for more.
 
 ## `docker-compose.yml`
 
@@ -159,6 +140,4 @@ Docker compose configuration file, See [the docker docs](https://docs.docker.com
 
 basic Dockerfile configuration to build the app, See [the docker docs](https://docs.docker.com/engine/reference/builder/) for more.
 
-## `ormconfig.ts`
 
-Typeorm configuration file which is used for migrations and seeds.

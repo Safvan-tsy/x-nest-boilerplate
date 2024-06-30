@@ -1,7 +1,7 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common'
 
 export class PageTypeException extends BadRequestException {
   constructor() {
-    super('error.pageType');
+    super('error.pageType')
   }
 }

@@ -1,13 +1,12 @@
-import type { NamingStrategyInterface } from 'typeorm';
-import { DefaultNamingStrategy } from 'typeorm';
-import { snakeCase } from 'typeorm/util/StringUtils';
+import { DefaultNamingStrategy, type NamingStrategyInterface } from 'typeorm'
+import { snakeCase } from 'typeorm/util/StringUtils'
 
 export class SnakeNamingStrategy
   extends DefaultNamingStrategy
   implements NamingStrategyInterface
 {
   tableName(className: string, customName: string | undefined): string {
-    return customName ?? snakeCase(className);
+    return customName ?? snakeCase(className)
   }
 
   columnName(
@@ -18,15 +17,15 @@ export class SnakeNamingStrategy
     return (
       snakeCase(embeddedPrefixes.join('_')) +
       (customName ?? snakeCase(propertyName))
-    );
+    )
   }
 
   relationName(propertyName: string): string {
-    return snakeCase(propertyName);
+    return snakeCase(propertyName)
   }
 
   joinColumnName(relationName: string, referencedColumnName: string): string {
-    return snakeCase(relationName + '_' + referencedColumnName);
+    return snakeCase(relationName + '_' + referencedColumnName)
   }
 
   joinTableName(
@@ -41,7 +40,7 @@ export class SnakeNamingStrategy
         firstPropertyName.replaceAll(/\./gi, '_') +
         '_' +
         secondTableName,
-    );
+    )
   }
 
   joinTableColumnName(
@@ -49,13 +48,13 @@ export class SnakeNamingStrategy
     propertyName: string,
     columnName?: string,
   ): string {
-    return snakeCase(tableName + '_' + (columnName ?? propertyName));
+    return snakeCase(tableName + '_' + (columnName ?? propertyName))
   }
 
   classTableInheritanceParentColumnName(
     parentTableName: string,
     parentTableIdPropertyName: string,
   ): string {
-    return snakeCase(`${parentTableName}_${parentTableIdPropertyName}`);
+    return snakeCase(`${parentTableName}_${parentTableIdPropertyName}`)
   }
 }

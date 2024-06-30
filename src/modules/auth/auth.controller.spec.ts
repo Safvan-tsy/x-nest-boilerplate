@@ -1,23 +1,22 @@
-import type { TestingModule } from '@nestjs/testing';
-import { Test } from '@nestjs/testing';
+import { Test, type TestingModule } from '@nestjs/testing'
 
-import { AuthController } from './auth.controller';
+import { AuthController } from './auth.controller'
 
 describe('AuthController', () => {
-  let app: TestingModule;
+  let app: TestingModule
 
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [],
       imports: [],
-    }).compile();
-  });
+    }).compile()
+  })
 
   describe('root', () => {
     it('should return "http://localhost"', () => {
-      const appController = app.get<AuthController>(AuthController);
-      expect(appController).toBe('http://localhost');
-    });
-  });
-});
+      const appController = app.get<AuthController>(AuthController)
+      expect(appController).toBe('http://localhost')
+    })
+  })
+})

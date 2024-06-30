@@ -1,27 +1,21 @@
-import './boilerplate.polyfill';
+import './boilerplate.polyfill'
 
-import path from 'node:path';
+// import path from 'node:path';
 
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { ThrottlerModule } from '@nestjs/throttler';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ClsModule } from 'nestjs-cls';
-import {
-  AcceptLanguageResolver,
-  HeaderResolver,
-  I18nModule,
-  QueryResolver,
-} from 'nestjs-i18n';
-import { DataSource } from 'typeorm';
-import { addTransactionalDataSource } from 'typeorm-transactional';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { ThrottlerModule } from '@nestjs/throttler'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ClsModule } from 'nestjs-cls'
+import { DataSource } from 'typeorm'
+import { addTransactionalDataSource } from 'typeorm-transactional'
 
-import { AuthModule } from './modules/auth/auth.module';
-import { HealthCheckerModule } from './modules/health-checker/health-checker.module';
-import { PostModule } from './modules/post/post.module';
-import { UserModule } from './modules/user/user.module';
-import { ApiConfigService } from './shared/services/api-config.service';
-import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './modules/auth/auth.module'
+import { HealthCheckerModule } from './modules/health-checker/health-checker.module'
+import { PostModule } from './modules/post/post.module'
+import { UserModule } from './modules/user/user.module'
+import { ApiConfigService } from './shared/services/api-config.service'
+import { SharedModule } from './shared/shared.module'
 
 @Module({
   imports: [
@@ -52,29 +46,13 @@ import { SharedModule } from './shared/shared.module';
       inject: [ApiConfigService],
       dataSourceFactory: (options) => {
         if (!options) {
-          throw new Error('Invalid options passed');
+          throw new Error('Invalid options passed')
         }
 
         return Promise.resolve(
           addTransactionalDataSource(new DataSource(options)),
-        );
+        )
       },
-    }),
-    I18nModule.forRootAsync({
-      useFactory: (configService: ApiConfigService) => ({
-        fallbackLanguage: configService.fallbackLanguage,
-        loaderOptions: {
-          path: path.join(__dirname, '/i18n/'),
-          watch: configService.isDevelopment,
-        },
-        resolvers: [
-          { use: QueryResolver, options: ['lang'] },
-          AcceptLanguageResolver,
-          new HeaderResolver(['x-lang']),
-        ],
-      }),
-      imports: [SharedModule],
-      inject: [ApiConfigService],
     }),
     HealthCheckerModule,
   ],

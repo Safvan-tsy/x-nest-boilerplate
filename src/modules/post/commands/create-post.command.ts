@@ -1,12 +1,15 @@
-import type { ICommand, ICommandHandler } from '@nestjs/cqrs';
-import { CommandHandler } from '@nestjs/cqrs';
-import { InjectRepository } from '@nestjs/typeorm';
-import { find } from 'lodash';
-import { Repository } from 'typeorm';
+import {
+  CommandHandler,
+  type ICommand,
+  type ICommandHandler,
+} from '@nestjs/cqrs'
+import { InjectRepository } from '@nestjs/typeorm'
+import { find } from 'lodash'
+import { Repository } from 'typeorm'
 
-import type { CreatePostDto } from '../dtos/create-post.dto';
-import { PostEntity } from '../post.entity';
-import { PostTranslationEntity } from '../post-translation.entity';
+import { type CreatePostDto } from '../dtos/create-post.dto'
+import { PostEntity } from '../post.entity'
+import { PostTranslationEntity } from '../post-translation.entity'
 
 export class CreatePostCommand implements ICommand {
   constructor(
@@ -27,15 +30,15 @@ export class CreatePostHandler
   ) {}
 
   async execute(command: CreatePostCommand) {
-    const { userId, createPostDto } = command;
-    const postEntity = this.postRepository.create({ userId });
-    const translations: PostTranslationEntity[] = [];
+    const { userId, createPostDto } = command
+    const postEntity = this.postRepository.create({ userId })
+    const translations: PostTranslationEntity[] = []
 
-    await this.postRepository.save(postEntity);
+    await this.postRepository.save(postEntity)
 
     // FIXME: Create generic function for translation creation
     for (const createTranslationDto of createPostDto.title) {
-      const languageCode = createTranslationDto.languageCode;
+      const languageCode = createTranslationDto.languageCode
       const translationEntity = this.postTranslationRepository.create({
         postId: postEntity.id,
         languageCode,
@@ -43,15 +46,15 @@ export class CreatePostHandler
         description: find(createPostDto.description, {
           languageCode,
         })!.text,
-      });
+      })
 
-      translations.push(translationEntity);
+      translations.push(translationEntity)
     }
 
-    await this.postTranslationRepository.save(translations);
+    await this.postTranslationRepository.save(translations)
 
-    postEntity.translations = translations;
+    postEntity.translations = translations
 
-    return postEntity;
+    return postEntity
   }
 }

@@ -1,26 +1,30 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
 
-import { AbstractTranslationEntity } from '../../common/abstract.entity';
-import { UseDto } from '../../decorators';
-import { PostTranslationDto } from './dtos/post-translation.dto';
-import { PostEntity } from './post.entity';
+import { AbstractTranslationEntity } from '../../common/abstract.entity'
+import { UseDto } from '../../decorators'
+import { PostTranslationDto } from './dtos/post-translation.dto'
+import { PostEntity } from './post.entity'
 
 @Entity({ name: 'post_translations' })
 @UseDto(PostTranslationDto)
 export class PostTranslationEntity extends AbstractTranslationEntity<PostTranslationDto> {
   @Column()
-  title!: string;
+  title!: string
 
   @Column()
-  description!: string;
+  description!: string
 
   @Column({ type: 'uuid' })
-  postId!: Uuid;
+  postId!: Uuid
 
-  @ManyToOne(() => PostEntity, (postEntity) => postEntity.translations, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  })
+  @ManyToOne(
+    () => PostEntity,
+    (postEntity) => postEntity.translations,
+    {
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    },
+  )
   @JoinColumn({ name: 'post_id' })
-  post?: PostEntity;
+  post?: PostEntity
 }

@@ -1,9 +1,9 @@
-import { BooleanFieldOptional } from '../../../decorators';
+import { BooleanFieldOptional } from '../../../decorators'
 
 export class CreateSettingsDto {
   @BooleanFieldOptional()
-  isEmailVerified?: boolean;
+  isEmailVerified?: boolean
 
   @BooleanFieldOptional()
-  isPhoneVerified?: boolean;
+  isPhoneVerified?: boolean
 }

@@ -2,39 +2,26 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
-    "skipLibCheck": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowUnreachableCode": false,
-    "noImplicitReturns": true,
-//    "exactOptionalPropertyTypes": true,
-    "noImplicitThis": true,
-//    "noPropertyAccessFromIndexSignature": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "strictPropertyInitialization": true,
     "target": "ES2022",
-    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
-    "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
     "baseUrl": "./src",
     "incremental": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "strict": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

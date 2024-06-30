@@ -7,19 +7,19 @@ import {
   Post,
   UploadedFile,
   Version,
-} from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+} from '@nestjs/common'
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 
-import { RoleType } from '../../constants';
-import { ApiFile, Auth, AuthUser } from '../../decorators';
-import { IFile } from '../../interfaces';
-import { UserDto } from '../user/dtos/user.dto';
-import { UserEntity } from '../user/user.entity';
-import { UserService } from '../user/user.service';
-import { AuthService } from './auth.service';
-import { LoginPayloadDto } from './dto/login-payload.dto';
-import { UserLoginDto } from './dto/user-login.dto';
-import { UserRegisterDto } from './dto/user-register.dto';
+import { RoleType } from '../../constants'
+import { ApiFile, Auth, AuthUser } from '../../decorators'
+import { IFile } from '../../interfaces'
+import { UserDto } from '../user/dtos/user.dto'
+import { UserEntity } from '../user/user.entity'
+import { UserService } from '../user/user.service'
+import { AuthService } from './auth.service'
+import { LoginPayloadDto } from './dto/login-payload.dto'
+import { UserLoginDto } from './dto/user-login.dto'
+import { UserRegisterDto } from './dto/user-register.dto'
 
 @Controller('auth')
 @ApiTags('auth')
@@ -38,14 +38,14 @@ export class AuthController {
   async userLogin(
     @Body() userLoginDto: UserLoginDto,
   ): Promise<LoginPayloadDto> {
-    const userEntity = await this.authService.validateUser(userLoginDto);
+    const userEntity = await this.authService.validateUser(userLoginDto)
 
     const token = await this.authService.createAccessToken({
       userId: userEntity.id,
       role: userEntity.role,
-    });
+    })
 
-    return new LoginPayloadDto(userEntity.toDto(), token);
+    return new LoginPayloadDto(userEntity.toDto(), token)
   }
 
   @Post('register')
@@ -56,14 +56,11 @@ export class AuthController {
     @Body() userRegisterDto: UserRegisterDto,
     @UploadedFile() file?: IFile,
   ): Promise<UserDto> {
-    const createdUser = await this.userService.createUser(
-      userRegisterDto,
-      file,
-    );
+    const createdUser = await this.userService.createUser(userRegisterDto, file)
 
     return createdUser.toDto({
       isActive: true,
-    });
+    })
   }
 
   @Version('1')
@@ -72,6 +69,6 @@ export class AuthController {
   @Auth([RoleType.USER, RoleType.ADMIN])
   @ApiOkResponse({ type: UserDto, description: 'current user info' })
   getCurrentUser(@AuthUser() user: UserEntity): UserDto {
-    return user.toDto();
+    return user.toDto()
   }
 }

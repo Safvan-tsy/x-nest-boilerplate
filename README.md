@@ -1,14 +1,17 @@
-# Awesome NestJS Boilerplate v10
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-[![Awesome NestJS](https://img.shields.io/badge/Awesome-NestJS-blue.svg?longCache=true&style=flat-square)](https://github.com/juliandavidmr/awesome-nestjs)
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-> This is an ever-evolving, very opinionated architecture and dev environment for new node projects using [NestJS](https://nestjs.com). Questions, feedback, and for now, even bikeshedding are welcome. 😄
+  <p align="center">Nestjs is a progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
 
 ## Getting started
 
 ```bash
 # 1. Clone the repository or click on "Use this template" button.
-npx degit NarHakobyan/awesome-nest-boilerplate my-nest-app
 
 # 2. Enter your newly-cloned folder.
 cd my-nest-app
@@ -16,8 +19,9 @@ cd my-nest-app
 # 3. Create Environment variables file.
 cp .env.example .env
 
-# 3. Install dependencies. (Make sure yarn is installed: https://yarnpkg.com/lang/en/docs/install)
-yarn
+# 3. Install dependencies. (Make sure pnpm is installed: https://yarnpkg.com/lang/en/docs/install)
+pnpm install
+
 ```
 
 ## Checklist
@@ -35,20 +39,31 @@ And, enjoy :)
 ### Development
 ```bash
 # 4. Run development server and open http://localhost:3000
-yarn start:dev
+# development
+$ pnpm run start
+
+# watch mode
+$ pnpm run start:dev
+
+# production mode
+$ pnpm run start:prod
 
 # 5. Read the documentation linked below for "Setup and development".
 ```
 
-### Build
 
-To build the App, run
+## Test
 
 ```bash
-yarn build:prod
-```
+# unit tests
+$ pnpm run test
 
-And you will see the generated file in `dist` that ready to be served.
+# e2e tests
+$ pnpm run test:e2e
+
+# test coverage
+$ pnpm run test:cov
+```
 
 ## Features
 
@@ -75,19 +90,28 @@ And you will see the generated file in `dist` that ready to be served.
   <dd>Already integrated API documentation. To see all available endpoints visit http://localhost:3000/documentation</dd>
 
   <dt><b>Linter</b></dt>
-  <dd>eslint + prettier = ❤️</dd>
+  <dd><del>eslint + prettier</del> biomejs = ❤️‍🔥</dd>
 </dl>
 
 ## Documentation
 
 This project includes a `docs` folder with more details on:
 
-1.  [Setup and development](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/development.html#first-time-setup)
-1.  [Architecture](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/architecture.html)
-1.  [Naming Cheatsheet](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/naming-cheatsheet.html)
+1.  [Setup and development](https://github.com/Safvan-tsy/x-nest-boilerplate/blob/main/docs/development.md)
+2.  [Architecture](https://github.com/Safvan-tsy/x-nest-boilerplate/blob/main/docs/architecture.md)
+3.  [Naming Cheatsheet](https://github.com/Safvan-tsy/x-nest-boilerplate/blob/main/docs/naming-cheatsheet.md)
+4.  [Linting & formatting](https://github.com/Safvan-tsy/x-nest-boilerplate/blob/main/docs/linting.md)
 
 ## Community
 
 For help, discussion about best practices, or any other conversation that would benefit from being searchable:
 
-[Discuss Awesome NestJS Boilerplate on GitHub](https://github.com/NarHakobyan/awesome-nest-boilerplate/discussions)
+[Discuss on GitHub](https://github.com/Safvan-tsy/x-nest-boilerplate/discussions)
+
+## Stay in touch
+
+- Author - [Safvan](https://www.safvan.dev/)
+
+## License
+
+[MIT licensed](LICENSE).

@@ -3,21 +3,21 @@ import {
   PasswordField,
   PhoneFieldOptional,
   StringField,
-} from '../../../decorators';
+} from '../../../decorators'
 
 export class UserRegisterDto {
   @StringField()
-  readonly firstName!: string;
+  readonly firstName!: string
 
   @StringField()
-  readonly lastName!: string;
+  readonly lastName!: string
 
   @EmailField()
-  readonly email!: string;
+  readonly email!: string
 
   @PasswordField({ minLength: 6 })
-  readonly password!: string;
+  readonly password!: string
 
   @PhoneFieldOptional()
-  phone?: string;
+  phone?: string
 }

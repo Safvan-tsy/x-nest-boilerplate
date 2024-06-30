@@ -16,21 +16,21 @@
 
 Make sure you have the following installed:
 
-- [Node](https://nodejs.org/en/) (at least the latest LTS)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/) (at least 1.0)
+- [NodeJs](https://nodejs.org/en/) (>18)
+- [pnpm](https://pnpm.io/) (>8)
 
 ## Installation
 
 ```bash
 # Install dependencies from package.json
-yarn install
+pnpm install
 ```
 
-> Note: don't delete yarn.lock before installation, See more [in yarn docs](https://classic.yarnpkg.com/en/docs/yarn-lock/)
+> Note: don't delete pnpm-lock.yaml before installation, See more [in pnpm docs](https://pnpm.io/git#lockfiles)
 
 ### Database
 
-> Note: Awesome NestJS Boilerplate uses [TypeORM](https://github.com/typeorm/typeorm) with Data Mapper pattern.
+> Note: X NestJS Boilerplate uses [TypeORM](https://github.com/typeorm/typeorm) with Data Mapper pattern.
 
 ### Configuration
 
@@ -48,13 +48,13 @@ Some helper script to work with database
 
 ```bash
 # To create new migration file
-yarn migration:create migration_name
+pnpm run migration:create migration_name
 
 # Truncate full database (note: it isn't deleting the database)
-yarn schema:drop
+pnpm run schema:drop
 
 # Generate migration from update of entities
-yarn migration:generate migration_name
+pnpm run migration:generate migration_name
 ```
 
 #### MySQL
@@ -96,7 +96,7 @@ export const dataSource = new DataSource({
 3. Delete all the files in migrations folder (`src/database/migrations`)
 4. Run the following commands in the root folder of the project, to regenerate the migrations:
 ```
-yarn typeorm migration:generate ./src/database/migrations/MySQLMigrations
+pnpm run typeorm migration:generate ./src/database/migrations/MySQLMigrations
 ```
 
 These steps may work for [other databases](https://typeorm.io/#features) supported by TypeORM. If they work, let us know and we'll add it to the docs!
@@ -109,14 +109,14 @@ After completing the steps above, you can use [this docker-compose file](../dock
 > Note: If you're on Linux and see an `ENOSPC` error when running the commands below, you must [increase the number of available file watchers](https://stackoverflow.com/questions/22475849/node-js-error-enospc#answer-32600959).
 
 ```bash
-# Launch the dev server
-yarn start:dev
+# development
+$ pnpm run start
 
-# Launch the dev server with file watcher
-yarn watch:dev
+# watch mode
+$ pnpm run start:dev
 
-# Launch the dev server and enable remote debugger with file watcher
-yarn debug:dev
+# production mode
+$ pnpm run start:prod
 ```
 
 ## Generators
@@ -127,7 +127,7 @@ This project includes generators to speed up common development tasks. Commands 
 
 ```bash
 # Install nest-cli globally
-yarn global add @nestjs/cli
+pnpm global add @nestjs/cli
 
 # Generate a new service
 nest generate service users

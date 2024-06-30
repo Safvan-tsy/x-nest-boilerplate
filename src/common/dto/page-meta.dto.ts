@@ -1,36 +1,36 @@
-import { BooleanField, NumberField } from '../../decorators';
-import type { PageOptionsDto } from './page-options.dto';
+import { BooleanField, NumberField } from '../../decorators'
+import { type PageOptionsDto } from './page-options.dto'
 
 interface IPageMetaDtoParameters {
-  pageOptionsDto: PageOptionsDto;
-  itemCount: number;
+  pageOptionsDto: PageOptionsDto
+  itemCount: number
 }
 
 export class PageMetaDto {
   @NumberField()
-  readonly page: number;
+  readonly page: number
 
   @NumberField()
-  readonly take: number;
+  readonly take: number
 
   @NumberField()
-  readonly itemCount: number;
+  readonly itemCount: number
 
   @NumberField()
-  readonly pageCount: number;
+  readonly pageCount: number
 
   @BooleanField()
-  readonly hasPreviousPage: boolean;
+  readonly hasPreviousPage: boolean
 
   @BooleanField()
-  readonly hasNextPage: boolean;
+  readonly hasNextPage: boolean
 
   constructor({ pageOptionsDto, itemCount }: IPageMetaDtoParameters) {
-    this.page = pageOptionsDto.page;
-    this.take = pageOptionsDto.take;
-    this.itemCount = itemCount;
-    this.pageCount = Math.ceil(this.itemCount / this.take);
-    this.hasPreviousPage = this.page > 1;
-    this.hasNextPage = this.page < this.pageCount;
+    this.page = pageOptionsDto.page
+    this.take = pageOptionsDto.take
+    this.itemCount = itemCount
+    this.pageCount = Math.ceil(this.itemCount / this.take)
+    this.hasPreviousPage = this.page > 1
+    this.hasNextPage = this.page < this.pageCount
   }
 }
