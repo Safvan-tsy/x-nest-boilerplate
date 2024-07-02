@@ -130,7 +130,7 @@ Environment variables which will load before app start and will be stored in `pr
 
 ## `biome.json`
 
-Biome configuration file, See [the biome doc](https://biomejs.dev/) for more.
+Biome configuration file, See [the biomejs doc](https://biomejs.dev/) for more.
 
 ## `docker-compose.yml`
 
