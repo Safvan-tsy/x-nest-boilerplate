@@ -1,7 +1,7 @@
 {
 	"name": "x-nestjs-boilerplate",
 	"version": "0.0.1",
-	"description": "NestJS Boilerplate, Typescript, Postgres, TypeORM",
+	"description": "NestJS Boilerplate, Typescript, Postgres, TypeORM, Vitest, biomejs",
 	"author": "Safvantsy <safvanmanikulath@gmail.com>",
 	"private": true,
 	"license": "MIT",
