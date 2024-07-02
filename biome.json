@@ -5,7 +5,6 @@
     "ignore": [
       "dist/**",
       "src/database/migrations/*",
-      "refer/*",
       "package.json",
       "package-lock.json",
       "pnpm-lock.yaml"
